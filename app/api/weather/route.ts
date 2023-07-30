@@ -19,20 +19,17 @@ const validate = (
 
 export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url);
-  const { lat, lon, unit } = validate(
-    searchParams.get("lat"),
-    searchParams.get("lon"),
-    searchParams.get("unit")
-  );
-
-  const fetch = async () => {
+  const fetch = async (): Promise<Weather> => {
+    const { lat, lon, unit } = validate(
+      searchParams.get("lat"),
+      searchParams.get("lon"),
+      searchParams.get("unit")
+    );
     const forecastsRes = getForecasts(lat, lon, unit);
     const currentRes = getCurrent(lat, lon, unit);
     const [forecasts, current] = await Promise.all([forecastsRes, currentRes]);
-
-    const res: Weather = { ...current, ...forecasts };
-    return NextResponse.json(res);
+    return { ...current, ...forecasts };
   };
 
-  return call(fetch);
+  return await call(fetch);
 };

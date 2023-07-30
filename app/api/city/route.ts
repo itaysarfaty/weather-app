@@ -9,11 +9,10 @@ const validate = (city: string | null) => {
 };
 
 export const GET = async (req: NextRequest) => {
+  const { searchParams } = new URL(req.url);
   const fetch = async () => {
-    const { searchParams } = new URL(req.url);
     const city = validate(searchParams.get("q"));
-    const res = await findCity(city);
-    return NextResponse.json(res);
+    return await findCity(city);
   };
 
   return call(fetch);
