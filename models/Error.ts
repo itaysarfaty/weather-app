@@ -1,24 +1,24 @@
 export interface CustomError {
   message: string;
-  statusCode: number;
+  code: number;
 }
 
 export function isError(object: any): object is CustomError {
-  return "message" in object && "statusCode" in object;
+  const keys = Object.keys(object);
+  const errorKeys = ["message", "code"];
+  return errorKeys.every((key) => keys.includes(key));
 }
 
 export const handleError = (error: any) => {
+  console.log("Handle Error Called");
   if (isError(error)) {
     return error;
   } else {
     console.log(error);
-    return {
-      message: "Internal Server Error",
-      statusCode: 500,
-    };
+    return NewError("Internal Server Error", 500);
   }
 };
 
-export const NewError = (message: string, statusCode: number): CustomError => {
-  return { message, statusCode };
+export const NewError = (message: string, code: number): CustomError => {
+  return { message, code };
 };
