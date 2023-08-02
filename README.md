@@ -23,8 +23,7 @@
 </div>
 
 ## Overview
-
-![screenshot](https://github.com/itaysarfaty/weather-app/assets/46969951/426f780c-d57a-4c5b-9cdb-4c1b1e1d343d)
+<img src="https://github.com/itaysarfaty/weather-app/assets/46969951/1ae32ef8-0195-475c-beb6-f4bb39fe689a" alt="weather-app" style="width:100%;"/>
 
 The process of developing my weather web app was truly enriching, as it allowed me to delve deeper into working with APIs. Additionally, I refined my skills in implementing responsive design to create a seamless user experience, regardless of the device they use.
 
