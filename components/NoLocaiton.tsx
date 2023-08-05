@@ -10,10 +10,11 @@ import Loader from "react-spinners/PuffLoader";
 export default function NoLocation() {
   const router = useRouter();
   const params = useSearchParams();
-  const { current } = getStorage();
   const [gettingCurrent, setGettingCurrent] = useState(false);
 
   useEffect(() => {
+    const { current } = getStorage();
+
     const fetch = async () => {
       if (params.get("lat") && params.get("lon")) return;
       if (current) {

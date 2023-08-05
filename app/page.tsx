@@ -8,19 +8,21 @@ import Wind from "@/components/features/Wind";
 import { CustomError, NewError, isError } from "@/models/Error";
 import { CoordParams, SearchParams } from "@/models/SearchParams";
 import { View, formatWeather as format } from "@/models/View";
-import { Weather } from "@/models/Weather";
-import { useEffect, useState } from "react";
+import { headers } from "next/headers";
 
 type FetchResponse = View | CustomError;
-async function getData(params?: CoordParams): Promise<FetchResponse> {
-  if (!params || !params?.lat || !params?.lon) {
+async function getData(
+  host: string | null,
+  params?: CoordParams
+): Promise<FetchResponse> {
+  if (!params || !params?.lat || !params?.lon || !host) {
     return NewError("Invalid params", 404);
   }
 
   const lat = parseFloat(params.lat);
   const lon = parseFloat(params.lon);
 
-  const url = `${process.env.BASE_URL}/api/weather?lat=${lat}&lon=${lon}`;
+  const url = `${host}/api/weather?lat=${lat}&lon=${lon}`;
   const res = await fetch(url, {
     cache: "no-cache",
   });
@@ -42,7 +44,12 @@ export default async function Home({
 }: {
   searchParams?: CoordParams;
 }) {
-  const view = await getData(searchParams);
+  const headersList = headers();
+
+  const domain = headersList.get("x-forwarded-host") || "";
+  const protocol = headersList.get("x-forwarded-proto") || "";
+  const host = `${protocol}://${domain}`;
+  const view = await getData(host, searchParams);
 
   if (isError(view)) {
     return <NoLocation />;
