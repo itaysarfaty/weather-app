@@ -58,7 +58,7 @@ export default async function Home({
   return (
     // Center items on screen
     <div className="flex flex-col  md:flex-row">
-      <div className="bg-secondary h-screen md:w-[450px] overflow-scroll ">
+      <div className="bg-secondary h-screen md:w-[450px] overflowY-scroll ">
         <Sidebar {...view.sidebar} />
       </div>
       <main className="bg-primary h-full flex-grow md:h-screen p-14 overflow-y-auto flex flex-col justify-between gap-12">
