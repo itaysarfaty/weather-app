@@ -7,6 +7,7 @@ export const call = async (f: CallableFunction) => {
     return NextResponse.json(res);
   } catch (error) {
     const e = handleError(error);
-    return NextResponse.json({ error: e }, { status: e.code });
+
+    return NextResponse.json({ error: e.message }, { status: e.code });
   }
 };

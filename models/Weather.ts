@@ -1,5 +1,5 @@
 export interface Forecast {
-  date: Date;
+  date: string;
   icon: string;
   temperature: {
     min: number;
@@ -9,9 +9,10 @@ export interface Forecast {
 }
 
 export interface Current {
-  date: Date;
+  date: string;
   icon: string;
   description: string;
+  city: string;
   wind: {
     value: number;
     deg: number;

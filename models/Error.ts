@@ -10,11 +10,9 @@ export function isError(object: any): object is CustomError {
 }
 
 export const handleError = (error: any) => {
-  console.log("Handle Error Called");
   if (isError(error)) {
     return error;
   } else {
-    console.log(error);
     return NewError("Internal Server Error", 500);
   }
 };

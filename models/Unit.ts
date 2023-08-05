@@ -14,20 +14,20 @@ export function isUnit(val: any): val is Unit {
 export const UNITS = {
   metric: {
     temperature: "°C",
-    wind: "m/sec",
-    visibility: "kilometers",
+    wind: "m/s",
+    visibility: "kms",
     pressure: "hPa",
   },
   imperial: {
     temperature: "°F",
-    wind: "mi/hr",
-    visibility: "miles",
+    wind: "mph",
+    visibility: "kms",
     pressure: "hPa",
   },
   standard: {
     temperature: "°K",
-    wind: "m/sec",
-    visibility: "kilometers",
+    wind: "m/s",
+    visibility: "kms",
     pressure: "hPa",
   },
 };

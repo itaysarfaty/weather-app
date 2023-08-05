@@ -1,0 +1,3 @@
+const apiHandler = (path: string) => {
+
+}

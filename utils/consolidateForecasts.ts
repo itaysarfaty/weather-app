@@ -41,8 +41,8 @@ export const consolidateForecasts = (forecasts: Forecast[]): Forecast => {
     ...forecast,
     icon,
     temperature: {
-      min,
-      max,
+      min: Math.round(min),
+      max: Math.round(max),
       unit: forecast.temperature.unit,
     },
   };

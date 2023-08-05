@@ -19,12 +19,12 @@ interface Response {
 }
 
 const format = (response: Response, tempUnit: string) => {
-  const forecasts = response.list.map((item): Forecast => {
+  const forecasts = (response.list ?? []).map((item): Forecast => {
     const { weather, main } = item;
     const { temp_min, temp_max } = main;
     const { id } = weather[0];
     return {
-      date: new Date(item.dt_txt),
+      date: item.dt_txt,
       icon: getIcon(Number(id)),
       temperature: {
         min: Number(temp_min),
@@ -48,7 +48,7 @@ const format = (response: Response, tempUnit: string) => {
     return consolidateForecasts(forecasts);
   });
 
-  return consolidated;
+  return consolidated.splice(0, 5);
 };
 
 const request = async (lat: number, lon: number, unit: Unit) => {
@@ -64,5 +64,9 @@ export async function getForecast(lat: number, lon: number, unit: Unit) {
   const res = await request(lat, lon, type);
   const forecasts = format(res, temperature);
 
-  return { forecasts };
+  return {
+    forecasts: forecasts.sort((a, b) =>
+      Date.parse(a.date) > Date.parse(b.date) ? 1 : -1
+    ),
+  };
 }
