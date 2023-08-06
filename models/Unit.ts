@@ -15,19 +15,19 @@ export const UNITS = {
   metric: {
     temperature: "°C",
     wind: "m/s",
-    visibility: "kms",
+    visibility: "km",
     pressure: "hPa",
   },
   imperial: {
     temperature: "°F",
     wind: "mph",
-    visibility: "kms",
+    visibility: "km",
     pressure: "hPa",
   },
   standard: {
     temperature: "°K",
     wind: "m/s",
-    visibility: "kms",
+    visibility: "km",
     pressure: "hPa",
   },
 };
