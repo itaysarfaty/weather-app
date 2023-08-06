@@ -3,17 +3,9 @@
 <h1 align="center">Weather</h1>
 
 <div align="center">
-   Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
-</div>
-
-<div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://thevveather.vercel.app/">
       Demo
-    </a>
-    <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
-      Solution
     </a>
     <span> | </span>
     <a href="https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv">
@@ -59,7 +51,7 @@ $ git clone https://github.com/your-user-name/your-project-name
 $ npm install
 
 # Run the app
-$ npm start
+$ npm run dev
 ```
 
 ## Acknowledgements
@@ -69,6 +61,7 @@ $ npm start
 - [Node.js](https://nodejs.org/)
 - [Date-fns](https://date-fns.org/)
 - [MUI-Icons](https://mui.com/material-ui/material-icons/)
+- [Open Weather API](https://openweathermap.org/)
 
 ## Contact
 
