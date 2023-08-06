@@ -8,6 +8,7 @@ export interface LocalStorage {
 }
 
 export const getStorage = () => {
+  if (typeof window === "undefined") return { current: undefined };
   const data = localStorage.getItem("coordinates");
   const parseData = data ? JSON.parse(data) : { current: undefined };
   return parseData as LocalStorage;

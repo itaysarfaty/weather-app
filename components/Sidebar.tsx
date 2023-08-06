@@ -7,7 +7,10 @@ export default function Sidebar(props: Sidebar) {
   const location = props != null;
 
   return (
-    <div className="flex flex-col justify-between h-full relative overflow-visible min-h-[600px]">
+    <div
+      className="flex flex-col justify-between h-full relative overflow-visible min-h-[600px]"
+      style={{ height: "100dvh" }}
+    >
       <Navbar />
       <div className="flex flex-col justify-around text-center text-white-light h-[80%] ">
         <div className="flex justify-center items-center h-[50%] relative ">
