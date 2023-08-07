@@ -13,25 +13,22 @@ export default function NoLocation() {
   const [gettingCurrent, setGettingCurrent] = useState(false);
 
   useEffect(() => {
-    const { current } = getStorage();
-
     const fetch = async () => {
-      if (params.get("lat") && params.get("lon")) return;
-      if (current) {
-        await goToSaved(router);
-      } else {
-        try {
-          setGettingCurrent(true);
-          await goToCurrent(router);
-        } catch (error) {
-          if (isError(error)) {
-            alert(error.message);
-          }
-        } finally {
-          setGettingCurrent(false);
+      setGettingCurrent(true);
+      const { current } = getStorage();
+      try {
+        if (current) goToSaved(router);
+        else await goToCurrent(router);
+      } catch (error) {
+        if (isError(error)) {
+          alert(error.message);
         }
+      } finally {
+        setGettingCurrent(false);
       }
     };
+    if (params.get("lat") && params.get("lon")) return;
+
     fetch();
   }, []);
 

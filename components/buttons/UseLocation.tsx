@@ -10,7 +10,6 @@ export default function UseLocation() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const params = useSearchParams();
-  const { current } = getStorage();
   const [hide, setHide] = useState(false);
 
   const handleLocationError = (error: unknown) => {
@@ -23,19 +22,18 @@ export default function UseLocation() {
     }
   };
 
+  // When component mounts
   useEffect(() => {
+    const { current } = getStorage();
     const fetch = async () => {
-      if (params.get("lat") && params.get("lon")) return;
-      if (current) {
-        await goToSaved(router);
-      } else {
-        try {
-          await goToCurrent(router);
-        } catch (error) {
-          handleLocationError(error);
-        }
+      try {
+        if (current) goToSaved(router);
+        else await goToCurrent(router);
+      } catch (error) {
+        handleLocationError(error);
       }
     };
+    if (params.get("lat") && params.get("lon")) return;
     fetch();
   }, []);
 

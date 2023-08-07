@@ -34,14 +34,14 @@ export const goToCurrent = async (router: AppRouterInstance) => {
   router.push(query);
 };
 
-export const goToSaved = async (router: AppRouterInstance) => {
+export const goToSaved = (router: AppRouterInstance) => {
   const { current } = getStorage();
-  if (!current) return;
+  if (!current) throw NewError("No saved location", 404);
   const query = formatQuery(current);
   router.push(query);
 };
 
-export const goTo = async (router: AppRouterInstance, coords: Coordinates) => {
+export const goTo = (router: AppRouterInstance, coords: Coordinates) => {
   if (typeof window !== "undefined") {
     // Perform localStorage action
     setStorage(coords);
